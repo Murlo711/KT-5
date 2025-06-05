@@ -1,0 +1,62 @@
+
+<div class="footer_content">
+    <h4>More recipies</h4>
+    <ol class="footer_scroll">
+        @for (recipe of recepiServise.recepList; track recipe.id) {
+            <div class="footer_elem" [routerLink]="`/recipe/${recipe.id}`">
+                <img [src]="recipe.image" class="footer_recipe_img"/>
+                <div>
+                    <h6>{{recipe.name}}</h6>
+                    <p>{{recipe.cookTimeMinutes}} min cooktime</p>
+                </div>
+                
+            </div>
+        }
+        
+    </ol>
+</div>
+
+
+
+<style>
+    /* .footer_content{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    } */
+    .footer_recipe_img{
+        
+        width: 80px;
+
+        border: 3px solid white;
+        border-radius: 25px;
+
+        position: relative;
+        bottom: 5%;
+    }
+
+    .footer_elem{
+        width: 185px;
+        height: 150px;
+        border: 1px solid white;
+        border-radius: 7px;
+        margin: 5px;
+
+        display: flex;
+        flex-direction: column;
+
+        font-size: xx-small;
+    }
+
+
+    .footer_scroll {
+        display: flex;
+        overflow-x: scroll; 
+        scrollbar-width: none; 
+    }
+
+    .footer_scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+</style>

@@ -1,0 +1,220 @@
+
+<div class="recepies_list_content">
+
+    <ul class="complexity_navigathion">
+        <li>
+            <a (click)="onComplexityChange('all')" [class.active]="currentComplexity === 'all'" routerLinkActive="active" class="complexity_elem">All</a>
+        </li>
+        <li>
+            <a (click)="onComplexityChange('easy')" [class.active]="currentComplexity === 'easy'" routerLinkActive="active" class="complexity_elem">Easy</a>
+        </li>
+        <li>
+            <a (click)="onComplexityChange('medium')" [class.active]="currentComplexity === 'medium'" routerLinkActive="active" class="complexity_elem">Medium</a>
+        </li>
+    </ul>
+    <div class="main_recipe_list_content">
+
+        <ul class="meal_navigathion">
+            <li>
+                <a (click)="onMealTypeChange('breakfast')" [class.active]="currentMealType === 'breakfast'" routerLinkActive="active" class="meal_link">Breakfast</a>
+            </li>
+            <li>
+                <a (click)="onMealTypeChange('lunch')" [class.active]="currentMealType === 'lunch'" routerLinkActive="active" class="meal_link">Lunch</a>
+            </li>
+            <li>
+                <a (click)="onMealTypeChange('dinner')" [class.active]="currentMealType === 'dinner'" routerLinkActive="active" class="meal_link">Dinner</a>
+            </li>
+        </ul>
+    
+            <div class="recipe_item">
+                @for (recipe of recepiServise.recepList; track recipe.id) {
+                    <div class="recipe_elem">
+        
+                        <div class="recipe_info">
+                            <h3>{{recipe.name}}</h3>
+        
+                            <div>
+                                <h4>Ingredients</h4>
+    
+                                <div class="ingredient_item">
+                                    @for (item of recipe.ingredients; track $index) {
+                                        <div class="ingredient_box">
+                                            <p >{{recipe.ingredients[$index]}}</p>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+        
+                            <div class="informathion_content">
+                                <h4 >Information</h4>
+                                <div class="information_item">
+                                    <div class="information_box">
+                                        <h3>{{recipe.caloriesPerServing}}</h3>
+                                        <p>Calories</p>
+                                    </div>
+                                    <div class="information_box">
+                                        <h3>{{recipe.rating}}</h3>
+                                        <p>Rating</p>
+                                    </div>
+                                    <div class="information_box">
+                                        <h3>{{recipe.prepTimeMinutes}}</h3>
+                                        <p>Prep time minutes</p>
+                                    </div>
+                                    <div class="information_box">
+                                        <h3>{{recipe.cookTimeMinutes}}</h3>
+                                        <p>Cook time minutes</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+        
+                            <button class="recipe_btn" [routerLink]="`/recipe/${recipe.id}`" >Recipe</button>
+        
+                        </div>
+    
+                        <img class="recipe_img" [src]="recipe.image"/>
+    
+                    </div>
+                }
+            </div>
+
+    </div>
+   
+</div>
+
+
+
+<style>
+    h4{
+        color: #969696;
+    }
+    .information_box{
+        width: 70px;
+        height: 130px;
+        border: 2px solid white;
+        border-radius: 7px;
+        margin: 5px;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        p{
+            color: #969696;
+            font-size: 12px;
+        }
+    }
+
+    .information_item{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .ingredient_item{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .ingredient_box{
+        display: flex;
+        align-items: center;
+        font-size: 10.5px;
+
+        height: 23px;
+        padding: 3px;
+        margin: 5px;
+        border: 2px solid white;
+        border-radius: 7px;
+    }
+
+    .complexity_navigathion{
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+
+    }
+    .complexity_elem {
+        color: #969696;
+
+
+        margin: 15px;
+        padding: 10px;
+    }
+
+    .complexity_elem.active {
+        color: rgb(0, 0, 0);
+    }
+
+    .meal_navigathion {
+        display: flex;
+        flex-direction: column;
+        list-style-type: none; 
+
+    }
+    
+
+    .meal_link {
+        display: flex; 
+        writing-mode: vertical-rl; 
+        transform: rotate(180deg); 
+        text-align: center; 
+        margin: 10px; 
+
+        color: #969696;
+
+    }
+
+    .meal_link.active{
+        color: rgb(0, 0, 0);
+     }
+
+    
+    .main_recipe_list_content{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .recipe_item {
+    display: flex;
+    overflow-y: scroll; 
+    scrollbar-width: none; 
+    }
+
+    .recipe_btn{
+        width: 124px;
+        height: 23px;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        background-color: #408EBA;
+    }
+
+    .recipe_item::-webkit-scrollbar {
+        display: none;
+    }
+
+    .recipe_elem{
+        width: 655px;
+        min-height: 465px;
+        margin: 40px;
+        margin-right: 150px;
+        padding: 10px;
+        border: 7px solid white;
+        border-radius: 25px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .recipe_img{
+        width: 320px;
+        height: 320px;
+        border: 7px solid white;
+        border-radius: 25px;
+
+        position: relative;
+        left: 25%;
+    }
+</style>
